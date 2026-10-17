@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Miguel Panel — файл команд и инструкция для Free Fire на iOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f0ff;--bg2:#e9e2ff;--surface:rgba(255,255,255,.78);--ink:#1a1438;--muted:#5d5880;--line:rgba(80,60,160,.18);--a:#e0245e;--a2:#d98200;--b:#6d3bff;--on:#fff;--glow:rgba(224,36,94,.28);color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0719;--bg2:#120c2e;--surface:rgba(30,22,66,.62);--ink:#f3f0ff;--muted:#a9a3d1;--line:rgba(160,140,255,.2);--a:#ff3d7f;--a2:#ffb020;--b:#8a5cff;--glow:rgba(255,61,127,.38);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a0719;--bg2:#120c2e;--surface:rgba(30,22,66,.62);--ink:#f3f0ff;--muted:#a9a3d1;--line:rgba(160,140,255,.2);--a:#ff3d7f;--a2:#ffb020;--b:#8a5cff;--glow:rgba(255,61,127,.38);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--ink);font:400 16px/1.55 Onest,system-ui,sans-serif;overflow-x:hidden;min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.55;z-index:0;pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
+.o1{width:460px;height:460px;background:var(--a);top:-120px;right:-140px}
+.o2{width:520px;height:520px;background:var(--b);bottom:-160px;left:-180px;animation-delay:-8s}
+@keyframes drift{to{transform:translate(-50px,60px) scale(1.12)}}
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 20px}
+h1,h2,.brand,.price,.amt{font-family:"Russo One",Impact,sans-serif;font-weight:400}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--a2);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.brand{font-size:21px;letter-spacing:.04em}
+.brand i{font-style:normal;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta{position:relative;display:inline-block;overflow:hidden;background:linear-gradient(100deg,var(--a),#ff7a3d);color:#fff;border:0;border-radius:14px;padding:15px 30px;font-weight:600;text-decoration:none;box-shadow:0 10px 34px var(--glow);transition:transform .2s,box-shadow .2s}
+.cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .6s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 14px 44px var(--glow)}
+.cta:hover::after{left:130%}
+.hero{padding:30px 0 70px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
+h1{font-size:clamp(40px,8.5vw,84px);line-height:.96;margin:0 0 22px;text-transform:uppercase;letter-spacing:.005em}
+h1 span{display:block;font-size:.5em;line-height:1.1;margin-top:12px;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:18px;max-width:42ch;margin:0 0 28px}
+.facts{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.facts span{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-size:14px;backdrop-filter:blur(10px)}
+.phone{position:relative;width:min(270px,100%);margin:0 auto;aspect-ratio:9/18.5;border-radius:42px;padding:10px;background:linear-gradient(160deg,var(--a),var(--b));box-shadow:0 0 70px var(--glow),0 30px 70px rgba(0,0,0,.35);transform:rotate(4deg)}
+.screen{height:100%;border-radius:33px;background:var(--bg2);padding:46px 18px 18px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.screen::before{content:"";position:absolute;top:12px;left:50%;width:84px;height:22px;margin-left:-42px;border-radius:12px;background:var(--bg)}
+.screen h3{margin:0 0 4px;font:400 15px "Russo One",sans-serif;letter-spacing:.06em}
+.row{display:flex;align-items:center;gap:10px;font-size:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 12px;opacity:0;animation:in .5s forwards}
+.row b{margin-left:auto;color:var(--a2);font-size:16px;opacity:0;animation:in .3s forwards}
+.row:nth-of-type(1){animation-delay:.4s}.row:nth-of-type(1) b{animation-delay:1.1s}
+.row:nth-of-type(2){animation-delay:1.3s}.row:nth-of-type(2) b{animation-delay:2s}
+.row:nth-of-type(3){animation-delay:2.2s}.row:nth-of-type(3) b{animation-delay:2.9s}
+.row:nth-of-type(4){animation-delay:3.1s}.row:nth-of-type(4) b{animation-delay:3.8s}
+.fin{margin-top:auto;text-align:center;font:400 14px "Russo One",sans-serif;color:var(--a);opacity:0;animation:in .5s 4.2s forwards}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+section{padding:40px 0}
+h2{font-size:clamp(26px,4.5vw,40px);margin:0 0 22px;text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.glass{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.glass .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 22px var(--glow)}
+.glass .ic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.glass h3{margin:0 0 6px;font-size:18px}
+.glass p{margin:0;color:var(--muted);font-size:15px}
+.tl{list-style:none;margin:0;padding:0 0 0 30px;border-left:2px solid var(--line);counter-reset:t}
+.tl li{position:relative;padding:0 0 22px 22px;color:var(--muted);counter-increment:t}
+.tl li::before{content:counter(t);position:absolute;left:-44px;top:-2px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;font:400 13px "Russo One",sans-serif;box-shadow:0 0 16px var(--glow)}
+.tl b{display:block;color:var(--ink);font-size:17px}
+.note{border-left:4px solid var(--a2);background:var(--surface);padding:16px 20px;border-radius:0 14px 14px 0;color:var(--muted);font-size:14px;backdrop-filter:blur(10px)}
+#buy{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:32px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 0 0 1px var(--glow),0 30px 80px var(--glow)}
+.price{font-size:58px;background:linear-gradient(90deg,var(--a2),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.price small{font:400 15px Onest,sans-serif;color:var(--muted);margin-left:10px;-webkit-text-fill-color:var(--muted)}
+label{display:block;font-weight:600;margin:20px 0 8px}
+input{width:100%;background:rgba(127,110,200,.12);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:13px 15px;font:inherit}
+.coins{display:flex;gap:10px;flex-wrap:wrap}
+.coin{flex:1;min-width:96px;background:rgba(127,110,200,.12);color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:13px;font-weight:600;transition:.2s}
+.coin[aria-pressed=true]{border-color:var(--a);box-shadow:0 0 0 4px var(--glow)}
+.pay{display:none;margin-top:20px;border:1px dashed var(--a);border-radius:18px;padding:20px}
+.pay.on{display:block;animation:in .4s}
+.amt{font-size:30px}
+.addr{display:flex;gap:8px;margin:12px 0}
+.addr code{flex:1;background:rgba(127,110,200,.12);border:1px solid var(--line);border-radius:12px;padding:12px;word-break:break-all;font:500 13px ui-monospace,Menlo,monospace}
+.addr button{background:rgba(127,110,200,.12);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+.timer{color:var(--a2);font-weight:600}
+.err{color:#ff5b86;min-height:20px;font-size:14px;margin:6px 0 0}
+.done{display:none;text-align:center;padding:16px}
+.done.on{display:block}
+footer{padding:30px 0 44px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:30px}
+@media (max-width:780px){.hero{grid-template-columns:1fr;padding-bottom:40px}.phone{transform:rotate(3deg);margin-top:20px}}
+@media (prefers-reduced-motion:reduce){.orb{animation:none}.row,.row b,.fin{animation:none;opacity:1}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div>
+<div class="wrap">
+<nav><div class="brand">MIGUEL<i> PANEL</i></div><a class="cta" href="#buy">Купить</a></nav>
+
+<header class="hero">
+<div>
+<h1>Miguel Panel<span>для Free Fire на iOS</span></h1>
+<p class="lead">Файл с командами для iOS и пошаговая инструкция. Платите криптой, получаете всё в Telegram после подтверждения перевода.</p>
+<a class="cta" href="#buy">Получить за 30 $</a>
+<div class="facts"><span>Файл + инструкция</span><span>Оплата в крипте</span><span>Возврат за 24 часа</span></div>
+</div>
+<div class="phone" aria-hidden="true"><div class="screen">
+<h3>MIGUEL PANEL</h3>
+<div class="row">Скачать файл<b>✓</b></div>
+<div class="row">Открыть инструкцию<b>✓</b></div>
+<div class="row">Выполнить шаги<b>✓</b></div>
+<div class="row">Проверить результат<b>✓</b></div>
+<div class="fin">ГОТОВО</div>
+</div></div>
+</header>
+
+<section>
+<h2>Что входит</h2>
+<div class="cards">
+<div class="glass"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></div><h3>Файл команд для iOS</h3><p>Набор команд в одном файле. Скачивается сразу после оплаты.</p></div>
+<div class="glass"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h6M8 11h6"/></svg></div><h3>Инструкция</h3><p>Подробный гайд: шаги установки и ответы на частые вопросы.</p></div>
+<div class="glass"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div><h3>Помощь в Telegram</h3><p>Не получилось с первого раза? Напишите продавцу, разберёмся.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Как получить</h2>
+<ol class="tl">
+<li><b>Выберите монету</b>Укажите свой Telegram и монету для оплаты.</li>
+<li><b>Переведите сумму</b>Адрес и точная сумма появятся ниже, на оплату 30 минут.</li>
+<li><b>Отправьте хеш транзакции</b>Так продавец быстрее найдёт ваш платёж.</li>
+<li><b>Получите файл</b>Файл и инструкция придут в Telegram после подтверждения.</li>
+</ol>
+</section>
+
+<section><div class="note">Это файл с командами и инструкция, а не отдельная программа. Результат зависит от устройства и версии iOS, игровых преимуществ мы не обещаем. Проект не связан с Garena и Free Fire. Возврат возможен, если файл не открылся или инструкция не работает: напишите в течение 24 часов.</div></section>
+
+<section>
+<div id="buy">
+<h2>Оформить заказ</h2>
+<div class="price">30 $<small>разовый платёж</small></div>
+<div id="form">
+<label for="tg">Ваш Telegram</label>
+<input id="tg" placeholder="@username" autocomplete="off">
+<label>Монета для оплаты</label>
+<div class="coins" id="coins"></div>
+<div class="err" id="err"></div>
+<div class="pay" id="pay">
+<div>К оплате: <span class="amt" id="amt"></span></div>
+<div style="color:var(--muted);font-size:14px" id="net"></div>
+<div class="addr"><code id="addr"></code><button id="copy">Копировать</button></div>
+<div style="font-size:14px">Адрес действует: <span class="timer" id="tm">30:00</span></div>
+<label for="tx">Хеш транзакции</label>
+<input id="tx" placeholder="Вставьте после перевода" autocomplete="off">
+<button class="cta" id="paid" style="margin-top:18px;width:100%">Я оплатил</button>
+</div>
+</div>
+<div class="done" id="done"><h2>Заявка принята</h2><p style="color:var(--muted)">Чтобы продавец сразу увидел ваш платёж, нажмите кнопку и отправьте готовое сообщение в Telegram. Файл с инструкцией придёт после проверки перевода, обычно до 30 минут.</p><a class="cta" id="tglink" href="#" target="_blank" rel="noopener" style="margin-top:14px">Написать продавцу в Telegram</a></div>
+</div>
+</section>
+<footer>Miguel Panel · Продавец: <span id="seller">@Artem21FF</span></footer>
+</div>
+
+<script>
+/* Настройте под себя: адреса кошельков, курсы, контакт */
+const CFG={seller:"@Artem21FF",usd:30,minutes:30,coins:[
+{id:"TRC",label:"USDT · TRC-20",sym:"USDT",net:"TRON (TRC-20)",addr:"TRqMQTJfq3ZN2DvbfgKpAerzK48BTjyS8s",rate:1,dec:2},
+{id:"TON",label:"USDT · TON",sym:"USDT",net:"TON",addr:"UQBSfH6Ru74QeFcy5GreeEGSUvZ_JINEG71wCIkXKJwcEzTv",rate:1,dec:2},
+{id:"BEP",label:"USDT · BEP-20",sym:"USDT",net:"BNB Smart Chain (BEP-20)",addr:"0x1f89d4465F81e7718539776B9567eE3CA0eCcbdC",rate:1,dec:2}
+]};
+const $=i=>document.getElementById(i);
+let cur=null,tmr=null,end=0;
+$("seller").textContent=CFG.seller;
+$("coins").innerHTML=CFG.coins.map(c=>`<button class="coin" aria-pressed="false" data-c="${c.id}">${c.label}</button>`).join("");
+function tick(){const s=Math.max(0,Math.round((end-Date.now())/1000));$("tm").textContent=String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");if(!s){clearInterval(tmr);$("tm").textContent="время вышло — выберите монету заново"}}
+function pick(id){cur=CFG.coins.find(c=>c.id===id);
+document.querySelectorAll(".coin").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===id));
+$("amt").textContent=(CFG.usd/cur.rate).toFixed(cur.dec)+" "+cur.sym;
+$("net").textContent="Отправляйте только USDT в сети "+cur.net+". Перевод в другой сети приведёт к потере средств.";
+$("addr").textContent=cur.addr;$("pay").classList.add("on");$("err").textContent="";
+end=Date.now()+CFG.minutes*60000;clearInterval(tmr);tmr=setInterval(tick,1000);tick()}
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+if(b.dataset.c)pick(b.dataset.c);
+if(b.id==="copy"){try{navigator.clipboard.writeText(cur.addr);b.textContent="Скопировано"}catch(x){b.textContent="Выделите вручную"}setTimeout(()=>b.textContent="Копировать",1800)}
+if(b.id==="paid"){const tg=$("tg").value.trim(),tx=$("tx").value.trim();
+if(!/^@?[A-Za-z0-9_]{4,32}$/.test(tg)){$("err").textContent="Укажите Telegram в формате @username — туда придёт файл.";$("tg").focus();return}
+if(tx.length<10){$("err").textContent="Вставьте хеш транзакции после перевода.";$("tx").focus();return}
+clearInterval(tmr);$("tglink").href="https://t.me/"+CFG.seller.slice(1)+"?text="+encodeURIComponent("Оплатил Miguel Panel: "+$("amt").textContent+" ("+cur.net+")\nХеш: "+tx+"\nМой Telegram: "+(tg.charAt(0)==="@"?tg:"@"+tg));$("form").style.display="none";$("done").classList.add("on")}
+});
+$("tg").addEventListener("input",()=>$("err").textContent="");
+</script>
+</body>
+</html>
